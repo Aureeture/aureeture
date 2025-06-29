@@ -15,7 +15,7 @@ const navItems = [
   { name: "Mentors", href: "/mentors" },
   { name: "Features", href: "/features" },
   { name: "How We Work", href: "/how-we-work" },
-  { name: "Students Plan", href: "/students-payment"}
+  { name: "Student Plans", href: "/student-payment" },
 ]
 
 export function Navbar() {
