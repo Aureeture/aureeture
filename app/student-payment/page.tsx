@@ -138,8 +138,8 @@ export default function StudentPaymentPage() {
             { icon: Zap, text: "Full Interview Prep Suite", included: true },
         ],
         hackathon: [
-            { icon: Brain, text: "24/7 AI Hackathon Mentor", included: true },
-            { icon: Target, text: "Hackathon Project Templates", included: true },
+            { icon: Brain, text: "24/7 AI Bootcamp Mentor", included: true },
+            { icon: Target, text: "Bootcamp Project Templates", included: true },
             { icon: Users, text: "Team Formation Support", included: true },
             { icon: Award, text: "Pitch Deck Templates", included: true },
             { icon: TrendingUp, text: "Real-time Code Reviews", included: true },
@@ -293,7 +293,7 @@ export default function StudentPaymentPage() {
                                         </div>
 
                                         <h3 className="text-xl font-bold mb-2 capitalize text-white">
-                                            {key === "hackathon" ? "Hackathon Prep" : key}
+                                            {key === "hackathon" ? "Bootcamp Prep" : key}
                                         </h3>
                                         <p className="text-gray-400 mb-4 text-sm">{plan.duration}</p>
 
