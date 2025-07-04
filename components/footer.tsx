@@ -1,11 +1,18 @@
 "use client"
 
 import type React from "react"
-
 import Link from "next/link"
-import Image from 'next/image';
+import Image from "next/image"
 import { useState } from "react"
-import { Linkedin, Twitter, Instagram, Mail, MapPin, Phone, CheckCircle } from "lucide-react"
+import {
+  Linkedin,
+  Twitter,
+  Instagram,
+  Mail,
+  MapPin,
+  Phone,
+  CheckCircle,
+} from "lucide-react"
 
 export function Footer() {
   const [email, setEmail] = useState("")
@@ -24,7 +31,7 @@ export function Footer() {
     <footer className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border-t border-purple-500/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-           {/* Brand Column */}
+          {/* Brand Column */}
           <div className="lg:col-span-1 space-y-6">
             <div className="flex items-center space-x-3">
               <Image
@@ -34,14 +41,6 @@ export function Footer() {
                 height={130}
                 className="rounded-xl shadow-lg"
               />
-              <div className="hidden sm:block">
-                {/* <span className="text-white font-bold text-xl tracking-tight">
-                  // Aureeture
-                </span>
-                <div className="text-xs text-purple-400 font-medium">
-                  AI Career Copilot
-                </div> */}
-              </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
               Shaping the Future of Careers with GenAI. Empowering students to
@@ -97,26 +96,34 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Resources */}
+          {/* Reserved Section */}
           <div className="space-y-6">
-            <h3 className="text-white font-semibold text-lg">Resources</h3>
+            <h3 className="text-white font-semibold text-lg">Reserved</h3>
             <div className="space-y-3">
-              {[
-                "Career Assessment",
-                "Learning Paths",
-                "Success Stories",
-                "Help Center",
-                "API Documentation",
-                "Community Forum",
-              ].map((resource) => (
-                <Link
-                  key={resource}
-                  href="/coming-soon"
-                  className="block text-gray-400 hover:text-purple-400 transition-colors text-sm hover:translate-x-1 transform duration-200"
-                >
-                  {resource}
-                </Link>
-              ))}
+              <Link
+                href="/privacy-policy"
+                className="block text-gray-400 hover:text-purple-400 transition-colors text-sm hover:translate-x-1 transform duration-200"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="/terms-and-conditions"
+                className="block text-gray-400 hover:text-purple-400 transition-colors text-sm hover:translate-x-1 transform duration-200"
+              >
+                Terms &amp; Conditions
+              </Link>
+              <Link
+                href="/refund-cancellation-policy"
+                className="block text-gray-400 hover:text-purple-400 transition-colors text-sm hover:translate-x-1 transform duration-200"
+              >
+                Refund &amp; Cancellation Policy
+              </Link>
+              <Link
+                href="/return-policy"
+                className="block text-gray-400 hover:text-purple-400 transition-colors text-sm hover:translate-x-1 transform duration-200"
+              >
+                Return Policy
+              </Link>
             </div>
           </div>
 
@@ -153,21 +160,26 @@ export function Footer() {
                   <span>Thank you for subscribing!</span>
                 </div>
               ) : (
-                <form onSubmit={handleSubscribe} className="newsletter-container">
+                <form onSubmit={handleSubscribe} className="flex space-x-2">
                   <input
                     type="email"
                     placeholder="Enter your email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="newsletter-input"
+                    className="px-3 py-2 rounded bg-gray-800 text-white placeholder-gray-500 text-sm w-full"
                     required
                   />
-                  <button type="submit" className="newsletter-button">
+                  <button
+                    type="submit"
+                    className="px-4 py-2 rounded bg-purple-700 text-white text-sm hover:bg-purple-600"
+                  >
                     Subscribe
                   </button>
                 </form>
               )}
-              <p className="text-xs text-gray-500 mt-2">Get updates on new features and career opportunities.</p>
+              <p className="text-xs text-gray-500 mt-2">
+                Get updates on new features and career opportunities.
+              </p>
             </div>
           </div>
         </div>
@@ -177,19 +189,10 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-400">
               <p>© 2025 Aureeture. All rights reserved.</p>
-              <div className="flex space-x-6">
-                <Link href="/coming-soon" className="hover:text-purple-400 transition-colors">
-                  Privacy Policy
-                </Link>
-                <Link href="/coming-soon" className="hover:text-purple-400 transition-colors">
-                  Terms of Service
-                </Link>
-                <Link href="/coming-soon" className="hover:text-purple-400 transition-colors">
-                  Cookies
-                </Link>
-              </div>
             </div>
-            <div className="text-sm text-gray-500">Made with ❤️ for the next generation of professionals</div>
+            <div className="text-sm text-gray-500">
+              Made with ❤️ for the next generation of professionals
+            </div>
           </div>
         </div>
       </div>
