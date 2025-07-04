@@ -31,7 +31,7 @@ import {
 } from "lucide-react"
 
 interface StudentPaymentFormData {
-    plan: "basic" | "premium" | "ultimate" | "bootcamp"
+    plan: "basic" | "premium" | "ultimate" | "hackathon"
     paymentMethod: "upi" | "card" | "netbanking"
     upiId: string
     cardName: string
@@ -94,13 +94,13 @@ export default function StudentPaymentPage() {
             badge: "Best Value",
             color: "from-orange-500 to-red-500",
         },
-        bootcamp: {
+        hackathon: {
             price: 996,
             originalPrice: 1500,
             period: "event",
             savings: 504,
             popular: false,
-            duration: "3 Days Bootcamp",
+            duration: "3 Days Hackathon",
             badge: "Limited Time",
             color: "from-gray-700 to-gray-900",
         },
@@ -137,15 +137,9 @@ export default function StudentPaymentPage() {
             { icon: FileText, text: "Weekly Mentor Sessions", included: true },
             { icon: Zap, text: "Full Interview Prep Suite", included: true },
         ],
-<<<<<<< HEAD
         hackathon: [
-            { icon: Brain, text: "24/7 AI Bootcamp Mentor", included: true },
-            { icon: Target, text: "Bootcamp Project Templates", included: true },
-=======
-        bootcamp: [
-            { icon: Brain, text: "24/7 AI Bootcamp Mentor", included: true },
-            { icon: Target, text: "Bootcamp Project Templates", included: true },
->>>>>>> 16ef334da28230c1f1546899164a07a3638c817a
+            { icon: Brain, text: "24/7 AI Hackathon Mentor", included: true },
+            { icon: Target, text: "Hackathon Project Templates", included: true },
             { icon: Users, text: "Team Formation Support", included: true },
             { icon: Award, text: "Pitch Deck Templates", included: true },
             { icon: TrendingUp, text: "Real-time Code Reviews", included: true },
@@ -265,21 +259,21 @@ export default function StudentPaymentPage() {
                             >
                                 <Card
                                     className={`cursor-pointer transition-all duration-300 h-full flex flex-col ${formData.plan === key
-                                            ? key === "bootcamp"
+                                            ? key === "hackathon"
                                                 ? "border-gray-500/80 bg-gray-700/30"
                                                 : "border-purple-500/60 bg-purple-500/10"
-                                            : key === "bootcamp"
+                                            : key === "hackathon"
                                                 ? "border-gray-600/40 hover:border-white/60 hover:bg-white/5 bg-gray-800/20"
                                                 : "border-purple-500/20 hover:border-purple-500/40"
                                         } ${plan.popular ? "ring-2 ring-purple-500/30" : ""}`}
                                     onClick={() =>
-                                        setFormData({ ...formData, plan: key as "basic" | "premium" | "ultimate" | "bootcamp" })
+                                        setFormData({ ...formData, plan: key as "basic" | "premium" | "ultimate" | "hackathon" })
                                     }
                                 >
                                     <CardContent className="p-6 text-center flex flex-col h-full">
-                                        {(plan.popular || key === "bootcamp") && (
+                                        {(plan.popular || key === "hackathon") && (
                                             <Badge
-                                                className={`absolute -top-3 left-1/2 transform -translate-x-1/2 ${key === "bootcamp"
+                                                className={`absolute -top-3 left-1/2 transform -translate-x-1/2 ${key === "hackathon"
                                                         ? "bg-gradient-to-r from-gray-700 to-gray-900 text-gray-200"
                                                         : "bg-gradient-to-r from-purple-500 to-blue-500 text-white"
                                                     }`}
@@ -291,7 +285,7 @@ export default function StudentPaymentPage() {
                                         <div
                                             className={`w-14 h-14 bg-gradient-to-r ${plan.color} rounded-2xl flex items-center justify-center mx-auto mb-4`}
                                         >
-                                            {key === "bootcamp" ? (
+                                            {key === "hackathon" ? (
                                                 <Zap className="h-7 w-7 text-white" />
                                             ) : (
                                                 <GraduationCap className="h-7 w-7 text-white" />
@@ -299,11 +293,7 @@ export default function StudentPaymentPage() {
                                         </div>
 
                                         <h3 className="text-xl font-bold mb-2 capitalize text-white">
-<<<<<<< HEAD
-                                            {key === "hackathon" ? "Bootcamp Prep" : key}
-=======
-                                            {key === "bootcamp" ? "Bootcamp Prep" : key}
->>>>>>> 16ef334da28230c1f1546899164a07a3638c817a
+                                            {key === "hackathon" ? "Hackathon Prep" : key}
                                         </h3>
                                         <p className="text-gray-400 mb-4 text-sm">{plan.duration}</p>
 
@@ -315,12 +305,12 @@ export default function StudentPaymentPage() {
                                             <div className="flex items-center justify-center space-x-2 mb-3">
                                                 <span className="text-gray-500 line-through text-sm">₹{plan.originalPrice}</span>
                                                 <span
-                                                    className={`font-semibold text-sm ${key === "bootcamp" ? "text-gray-400" : "text-green-400"}`}
+                                                    className={`font-semibold text-sm ${key === "hackathon" ? "text-gray-400" : "text-green-400"}`}
                                                 >
                                                     Save ₹{plan.savings}
                                                 </span>
                                             </div>
-                                            {key === "bootcamp" && (
+                                            {key === "hackathon" && (
                                                 <p className="text-xs text-gray-400">⚡ Use promo code for ₹999 final price</p>
                                             )}
                                         </div>
@@ -329,7 +319,7 @@ export default function StudentPaymentPage() {
                                             {planFeatures[key as keyof typeof planFeatures].slice(0, 4).map((feature, idx) => (
                                                 <div key={idx} className="flex items-center space-x-2 text-left">
                                                     <Check
-                                                        className={`h-3 w-3 flex-shrink-0 ${key === "bootcamp" ? "text-gray-400" : "text-green-400"}`}
+                                                        className={`h-3 w-3 flex-shrink-0 ${key === "hackathon" ? "text-gray-400" : "text-green-400"}`}
                                                     />
                                                     <span className="text-gray-300 text-xs">{feature.text}</span>
                                                 </div>
@@ -338,7 +328,7 @@ export default function StudentPaymentPage() {
 
                                         <Button
                                             className={`w-full mt-auto ${formData.plan === key
-                                                    ? key === "bootcamp"
+                                                    ? key === "hackathon"
                                                         ? "bg-gradient-to-r from-gray-600 to-gray-800 hover:from-gray-500 hover:to-gray-700 text-white"
                                                         : "bg-gradient-to-r from-purple-500 to-blue-500"
                                                     : "bg-gray-700 hover:bg-gray-600"
@@ -354,8 +344,8 @@ export default function StudentPaymentPage() {
                 </div>
             </section>
 
-            {/* Bootcamp Special Section */}
-            {formData.plan === "Bootcamp" && (
+            {/* Hackathon Special Section */}
+            {formData.plan === "hackathon" && (
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -368,9 +358,9 @@ export default function StudentPaymentPage() {
                                 <div className="w-20 h-20 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
                                     <Zap className="h-10 w-10 text-white" />
                                 </div>
-                                <h3 className="text-3xl font-bold text-white mb-4">🏆 Bootcamp Success Package</h3>
+                                <h3 className="text-3xl font-bold text-white mb-4">🏆 Hackathon Success Package</h3>
                                 <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                                    Everything you need to dominate your next Bootcamp! From ideation to presentation, our AI mentors and
+                                    Everything you need to dominate your next hackathon! From ideation to presentation, our AI mentors and
                                     expert resources will guide you to victory.
                                 </p>
                             </div>
@@ -390,7 +380,7 @@ export default function StudentPaymentPage() {
                                     {
                                         icon: Target,
                                         title: "Project Templates",
-                                        description: "Pre-built templates for popular bootcamp categories and themes",
+                                        description: "Pre-built templates for popular hackathon categories and themes",
                                     },
                                     {
                                         icon: Award,
@@ -420,7 +410,7 @@ export default function StudentPaymentPage() {
                                 </div>
 
                                 <p className="text-center text-gray-400 text-sm mt-2">
-                                Perfect for upcoming bootcamp, coding competitions, and innovation challenges
+                                Perfect for upcoming hackathons, coding competitions, and innovation challenges
                                 </p>
                             </div>
                         </CardContent>
@@ -666,7 +656,7 @@ export default function StudentPaymentPage() {
                                 <Card className="bg-gray-900/50 border-purple-500/20">
                                     <CardContent className="p-8">
                                         <h3 className="text-2xl font-bold mb-6 text-white">Promo Code</h3>
-                                        {formData.plan === "Bootcamp" && (
+                                        {formData.plan === "hackathon" && (
                                             <div className="mb-4 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
                                                 <p className="text-yellow-300 text-sm font-medium">
                                                     💡 Apply the promo code to get an exclusive discount!                                                </p>
@@ -709,7 +699,7 @@ export default function StudentPaymentPage() {
                                                     <CheckCircle className="h-5 w-5" />
                                                     <span>
                                                         Applied! 15% off
-                                                        {formData.plan === "bootcamp" && " - Final price now ₹999!"}
+                                                        {formData.plan === "hackathon" && " - Final price now ₹999!"}
                                                     </span>
                                                 </motion.div>
                                             )}
@@ -812,7 +802,7 @@ export default function StudentPaymentPage() {
                                                     <span className="text-white">Total</span>
                                                     <span className="text-green-400">₹{total}</span>
                                                 </motion.div>
-                                                {formData.plan === "bootcamp" && discountApplied && total === 999 && (
+                                                {formData.plan === "hackathon" && discountApplied && total === 999 && (
                                                     <motion.div
                                                         initial={{ opacity: 0, scale: 0.9 }}
                                                         animate={{ opacity: 1, scale: 1 }}
