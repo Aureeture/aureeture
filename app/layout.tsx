@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Aureeture – Your GenAI Career Copilot",
   description: "Discover, plan, and achieve your dream career with AI-powered guidance.",
   generator: "v0.dev",
-  keywords: ["GenAI", "Career Planning", "AI Copilot", "Job Discovery", "Aureeture"],
+  keywords: ["GenAI", "Career Planning", "AI Copilot", "Job Discovery", "Aureeture AI", "Aureeture", "GenAI platfrom"],
   authors: [{ name: "Aureeture Team", url: "https://aureeture.in" }],
   openGraph: {
     title: "Aureeture – Your GenAI Career Copilot",
