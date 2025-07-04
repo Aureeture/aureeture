@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     creator: "@aureeture",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/aureeture.favicon.png",
   },
 };
 

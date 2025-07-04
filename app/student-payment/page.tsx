@@ -137,9 +137,15 @@ export default function StudentPaymentPage() {
             { icon: FileText, text: "Weekly Mentor Sessions", included: true },
             { icon: Zap, text: "Full Interview Prep Suite", included: true },
         ],
+<<<<<<< HEAD
+        hackathon: [
+            { icon: Brain, text: "24/7 AI Bootcamp Mentor", included: true },
+            { icon: Target, text: "Bootcamp Project Templates", included: true },
+=======
         bootcamp: [
             { icon: Brain, text: "24/7 AI Bootcamp Mentor", included: true },
             { icon: Target, text: "Bootcamp Project Templates", included: true },
+>>>>>>> 16ef334da28230c1f1546899164a07a3638c817a
             { icon: Users, text: "Team Formation Support", included: true },
             { icon: Award, text: "Pitch Deck Templates", included: true },
             { icon: TrendingUp, text: "Real-time Code Reviews", included: true },
@@ -293,7 +299,11 @@ export default function StudentPaymentPage() {
                                         </div>
 
                                         <h3 className="text-xl font-bold mb-2 capitalize text-white">
+<<<<<<< HEAD
+                                            {key === "hackathon" ? "Bootcamp Prep" : key}
+=======
                                             {key === "bootcamp" ? "Bootcamp Prep" : key}
+>>>>>>> 16ef334da28230c1f1546899164a07a3638c817a
                                         </h3>
                                         <p className="text-gray-400 mb-4 text-sm">{plan.duration}</p>
 
