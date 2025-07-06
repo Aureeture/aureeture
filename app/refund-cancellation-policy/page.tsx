@@ -133,6 +133,9 @@ export default function RefundCancellationPolicyPage() {
                   <strong>3–10 business days</strong> for the refund to appear in
                   your account
                 </li>
+                <li>
+                  <strong>If refund is provided, it will be credited within 7 days</strong>
+                </li>
               </ul>
             </PolicySection>
 
