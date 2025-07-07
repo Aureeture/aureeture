@@ -191,6 +191,49 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Meet the Founder Section */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+              Meet the{" "}
+              <span className="text-transparent bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text">
+                Founder
+              </span>
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="group max-w-3xl mx-auto"
+          >
+            <Card className="bg-black/20 backdrop-blur-sm border-purple-500/30 hover:border-purple-500/50 hover:bg-black/30 transition-all duration-300 h-full flex flex-col">
+              <CardContent className="p-6 lg:p-8 text-center flex-1 flex flex-col items-center">
+                {/* Removed the founder's image placeholder */}
+                <h3 className="text-2xl lg:text-3xl font-semibold mb-2 text-white">Rishabh Soni</h3>
+                <p className="text-purple-400 text-base font-medium mb-4">Founder, Aureeture</p>
+                <p className="text-gray-400 mb-6 leading-relaxed flex-1">
+                  Driven by a vision to empower students with purpose-driven learning, I founded Aureeture to bridge the gap between skills and careers in the age of AI. As someone deeply passionate about education, technology, and innovation, I believe students deserve more than just textbooks and theory — they need guidance, mentorship, and tools that truly prepare them for the real world.
+                </p>
+                <p className="text-gray-400 leading-relaxed">
+                  At Aureeture, our mission is simple: turn potential into purpose. We're building an ecosystem where students can explore career paths, discover their strengths, and connect with the opportunities that fit them best — all powered by GenAI.
+                </p>
+                <p className="text-gray-400 mt-4 leading-relaxed">
+                  This is just the beginning, and I’m excited to lead this journey with a community that believes in the future of learning.
+                </p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      </section>
+
       {/* What is Aureeture AI */}
       <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
