@@ -133,6 +133,7 @@ The application uses environment variables for configuration. Copy `.env.example
 | `DATABASE_URL` | PostgreSQL connection string | No (future) |
 | `NEXTAUTH_SECRET` | Authentication secret | No (future) |
 | `OPENAI_API_KEY` | OpenAI API key for AI features | No (future) |
+| `CLERK_PUBLISHABLE_KEY` | Clerk publishable key | No (future) |
 
 ### Tailwind CSS
 

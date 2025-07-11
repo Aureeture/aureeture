@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://aureeture.in
-
-# Sitemaps
-Sitemap: https://aureeture.in/sitemap.xml
