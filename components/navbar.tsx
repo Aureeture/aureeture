@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, memo } from "react"
 import { usePathname } from "next/navigation"
 import Image from 'next/image'
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, User, LogOut, LogIn, UserPlus } from "lucide-react"
+import { Menu, X, User, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
 import { useAuth } from "@/contexts/auth-context"
@@ -59,68 +59,9 @@ const NavLink = memo(({ item, isActive, onClick }: { item: NavItem, isActive: bo
 
 NavLink.displayName = 'NavLink';
 
-const AuthButton = () => {
-  const { isAuthenticated, user } = useAuth();
-  
-  if (isAuthenticated) {
-    return (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="ghost"
-            className="relative h-10 w-10 rounded-full border border-purple-500/30 hover:bg-purple-500/10"
-          >
-            <Avatar className="h-8 w-8">
-              <AvatarImage src="" alt={user?.name || 'User'} />
-              <AvatarFallback className="bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm">
-                {user?.name?.charAt(0).toUpperCase() || 'U'}
-              </AvatarFallback>
-            </Avatar>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56 bg-gray-900 border-purple-500/30" align="end" forceMount>
-          <DropdownMenuLabel className="font-normal">
-            <div className="flex flex-col space-y-1">
-              <p className="text-sm font-medium leading-none">{user?.name}</p>
-              <p className="text-xs leading-none text-gray-400">{user?.email}</p>
-            </div>
-          </DropdownMenuLabel>
-          <DropdownMenuSeparator className="bg-purple-500/30" />
-          <Link href="/profile">
-            <DropdownMenuItem className="cursor-pointer hover:bg-purple-500/10 focus:bg-purple-500/10">
-              <User className="mr-2 h-4 w-4" />
-              <span>Profile</span>
-            </DropdownMenuItem>
-          </Link>
-          <DropdownMenuItem 
-            onClick={() => {
-              // Handle logout
-              const { logout } = useAuth();
-              logout();
-            }}
-            className="cursor-pointer text-red-400 hover:bg-red-500/10 focus:bg-red-500/10"
-          >
-            <LogOut className="mr-2 h-4 w-4" />
-            <span>Log out</span>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    );
-  }
-
-  return (
-    <Link 
-      href="/auth"
-      className="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-    >
-      Join Aureeture AI
-    </Link>
-  );
-};
-
 const MobileAuthButton = () => {
   const { isAuthenticated, user, logout } = useAuth();
-  
+
   if (isAuthenticated) {
     return (
       <div className="space-y-3 mb-4">
@@ -152,132 +93,7 @@ const MobileAuthButton = () => {
     );
   }
 
-  return (
-    <Link
-      href="/auth"
-      className="block w-full px-4 py-3 text-center text-sm font-medium rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-    >
-      Join Aureeture AI
-    </Link>
-  );
-};
-
-const AuthButtons = () => {
-  const { isAuthenticated, user, logout } = useAuth();
-  
-  if (isAuthenticated) {
-    return (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="ghost"
-            className="relative h-10 w-10 rounded-full border border-purple-500/30 hover:bg-purple-500/10"
-          >
-            <Avatar className="h-8 w-8">
-              <AvatarImage src="" alt={user?.name || 'User'} />
-              <AvatarFallback className="bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm">
-                {user?.name?.charAt(0).toUpperCase() || 'U'}
-              </AvatarFallback>
-            </Avatar>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56 bg-gray-900 border-purple-500/30" align="end" forceMount>
-          <DropdownMenuLabel className="font-normal">
-            <div className="flex flex-col space-y-1">
-              <p className="text-sm font-medium leading-none">{user?.name}</p>
-              <p className="text-xs leading-none text-gray-400">{user?.email}</p>
-            </div>
-          </DropdownMenuLabel>
-          <DropdownMenuSeparator className="bg-purple-500/30" />
-          <Link href="/profile">
-            <DropdownMenuItem className="cursor-pointer hover:bg-purple-500/10 focus:bg-purple-500/10">
-              <User className="mr-2 h-4 w-4" />
-              <span>Profile</span>
-            </DropdownMenuItem>
-          </Link>
-          <DropdownMenuItem 
-            onClick={logout}
-            className="cursor-pointer text-red-400 hover:bg-red-500/10 focus:bg-red-500/10"
-          >
-            <LogOut className="mr-2 h-4 w-4" />
-            <span>Log out</span>
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    );
-  }
-
-  return (
-    <div className="flex items-center space-x-2">
-      <Link href="/login">
-        <Button
-          variant="outline"
-          className="border-purple-500/30 text-purple-400 hover:bg-purple-500/10 hover:text-purple-300"
-        >
-          <LogIn className="mr-2 h-4 w-4" />
-          Login
-        </Button>
-      </Link>
-      <Link href="/signup">
-        <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
-          <UserPlus className="mr-2 h-4 w-4" />
-          Sign Up
-        </Button>
-      </Link>
-    </div>
-  );
-};
-
-const MobileAuthButtons = () => {
-  const { isAuthenticated, user, logout } = useAuth();
-  
-  if (isAuthenticated) {
-    return (
-      <div className="space-y-3 mb-4">
-        <div className="flex items-center space-x-3 px-4 py-3">
-          <Avatar className="h-10 w-10">
-            <AvatarImage src="" alt={user?.name || 'User'} />
-            <AvatarFallback className="bg-gradient-to-r from-purple-600 to-blue-600 text-white">
-              {user?.name?.charAt(0).toUpperCase() || 'U'}
-            </AvatarFallback>
-          </Avatar>
-          <div>
-            <p className="text-sm font-medium text-white">{user?.name}</p>
-            <p className="text-xs text-gray-400">{user?.email}</p>
-          </div>
-        </div>
-        <Link
-          href="/profile"
-          className="block px-4 py-3 text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg"
-        >
-          Profile
-        </Link>
-        <button
-          onClick={logout}
-          className="w-full text-left px-4 py-3 text-base font-medium text-red-400 hover:bg-red-500/10 rounded-lg"
-        >
-          Logout
-        </button>
-      </div>
-    );
-  }
-
-  return (
-    <div className="space-y-3 mb-4">
-      <Link
-        href="/login"
-        className="block px-4 py-3 text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg"
-      >
-        Login
-      </Link>
-      <Link
-        href="/signup"
-        className="block px-4 py-3 text-base font-medium text-white bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-lg text-center"
-      >
-        Create Account
-      </Link>
-    </div>
-  );
+  return null; // Removed the "Join Aureeture AI" button
 };
 
 export function Navbar() {
@@ -302,7 +118,6 @@ export function Navbar() {
     setIsOpen(prev => !prev)
   }, [])
 
-  // Close menu when route changes
   useEffect(() => {
     closeMenu()
   }, [pathname, closeMenu])
@@ -354,7 +169,7 @@ export function Navbar() {
             >
               Contact Us
             </Link>
-            <AuthButton />
+            {/* Removed AuthButton */}
           </div>
 
           <div className="lg:hidden">
@@ -428,7 +243,7 @@ export function Navbar() {
               ))}
 
               <div className="pt-4 border-t border-gray-700">
-                <MobileAuthButton />
+                {/* Removed MobileAuthButton */}
                 <Link
                   href="/contact"
                   className="block px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 text-gray-300 hover:text-white hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-purple-500"
