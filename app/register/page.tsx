@@ -163,7 +163,7 @@ export default function RegistrationPage() {
       });
 
       const data = await response.json();
- if (!response.ok) {
+      if (!response.ok) {
         throw new Error(data.error || 'Registration failed');
       }
 
@@ -209,14 +209,17 @@ export default function RegistrationPage() {
             />
           </div>
           
-          <divFACILITATE
-            id="phone"
-            name="phone"
-            type="tel"
-            value={formData.phone}
-            onChange={handleChange}
-            className="mt-1 bg-gray-900 border-gray-700 text-white focus:border-purple-500 focus:ring-purple-500"
-          />
+          <div>
+            <Label htmlFor="phone" className="text-gray-300">Phone Number</Label>
+            <Input
+              id="phone"
+              name="phone"
+              type="tel"
+              value={formData.phone}
+              onChange={handleChange}
+              className="mt-1 bg-gray-900 border-gray-700 text-white focus:border-purple-500 focus:ring-purple-500"
+            />
+          </div>
         </div>
       </div>
     </div>
