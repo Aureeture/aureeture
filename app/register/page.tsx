@@ -144,6 +144,12 @@ export default function RegistrationPage() {
       return;
     }
 
+    if (!process.env.NEXT_PUBLIC_API_URL) {
+      setError('API configuration error. Please contact support.');
+      setIsSubmitting(false);
+      return;
+    }
+
     setIsSubmitting(true);
     setError(null);
 
@@ -156,15 +162,15 @@ export default function RegistrationPage() {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) {
-        throw new Error('Registration failed');
+      const data = await response.json();
+ if (!response.ok) {
+        throw new Error(data.error || 'Registration failed');
       }
 
-      await response.json();
       router.push('/');
     } catch (error) {
       console.error('Registration failed:', error);
-      setError('Registration failed. Please try again.');
+      setError(error.message || 'Registration failed. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -203,24 +209,21 @@ export default function RegistrationPage() {
             />
           </div>
           
-          <div>
-            <Label htmlFor="phone" className="text-gray-300">Phone Number</Label>
-            <Input
-              id="phone"
-              name="phone"
-              type="tel"
-              value={formData.phone}
-              onChange={handleChange}
-              className="mt-1 bg-gray-900 border-gray-700 text-white focus:border-purple-500 focus:ring-purple-500"
-            />
-          </div>
+          <divFACILITATE
+            id="phone"
+            name="phone"
+            type="tel"
+            value={formData.phone}
+            onChange={handleChange}
+            className="mt-1 bg-gray-900 border-gray-700 text-white focus:border-purple-500 focus:ring-purple-500"
+          />
         </div>
       </div>
     </div>
   );
 
   const renderStepTwo = () => (
-    <div className=" industrielspace-y-6">
+    <div className="space-y-6">
       <h2 className="text-2xl font-bold text-white">Education & Career</h2>
       <p className="text-gray-300">Tell us about your education and career aspirations.</p>
       
