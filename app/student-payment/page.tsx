@@ -58,39 +58,9 @@ export default function StudentPaymentPage() {
     const [studentVerified, setStudentVerified] = useState(false)
 
     const studentPlans = {
-        basic: {
-            price: 99,
-            originalPrice: 199,
-            period: "month",
-            savings: 100,
-            popular: false,
-            duration: "3 months access",
-            badge: "Starter",
-            color: "from-green-500 to-emerald-500",
-        },
-        premium: {
-            price: 199,
-            originalPrice: 399,
-            period: "month",
-            savings: 200,
-            popular: true,
-            duration: "6 months access",
-            badge: "Most Popular",
-            color: "from-purple-500 to-blue-500",
-        },
-        ultimate: {
-            price: 299,
-            originalPrice: 599,
-            period: "month",
-            savings: 300,
-            popular: false,
-            duration: "12 months access",
-            badge: "Best Value",
-            color: "from-orange-500 to-red-500",
-        },
         bootcamp: {
-            price: 996,
-            originalPrice: 1500,
+            price: 1699,
+            originalPrice: 1699,
             period: "event",
             savings: 504,
             popular: false,
@@ -101,36 +71,6 @@ export default function StudentPaymentPage() {
     }
 
     const planFeatures = {
-        basic: [
-            { icon: Brain, text: "2 AI Copilot Sessions/week", included: true },
-            { icon: BookOpen, text: "Basic Learning Path", included: true },
-            { icon: Target, text: "5 Practice Projects", included: true },
-            { icon: Users, text: "Community Access", included: true },
-            { icon: Award, text: "Basic Certificates", included: true },
-            { icon: TrendingUp, text: "Progress Tracking", included: false },
-            { icon: FileText, text: "1:1 Mentor Sessions", included: false },
-            { icon: Zap, text: "Interview Prep", included: false },
-        ],
-        premium: [
-            { icon: Brain, text: "Unlimited AI Copilot Access", included: true },
-            { icon: BookOpen, text: "Personalized Learning Path", included: true },
-            { icon: Target, text: "15 Real-World Projects", included: true },
-            { icon: Users, text: "Premium Community", included: true },
-            { icon: Award, text: "Verified Certificates", included: true },
-            { icon: TrendingUp, text: "Advanced Analytics", included: true },
-            { icon: FileText, text: "2 Mentor Sessions/month", included: true },
-            { icon: Zap, text: "AI Interview Simulator", included: false },
-        ],
-        ultimate: [
-            { icon: Brain, text: "Unlimited AI Copilot Access", included: true },
-            { icon: BookOpen, text: "Custom Learning Path", included: true },
-            { icon: Target, text: "Unlimited Projects", included: true },
-            { icon: Users, text: "Exclusive Student Network", included: true },
-            { icon: Award, text: "Industry Certificates", included: true },
-            { icon: TrendingUp, text: "Career Analytics Dashboard", included: true },
-            { icon: FileText, text: "Weekly Mentor Sessions", included: true },
-            { icon: Zap, text: "Full Interview Prep Suite", included: true },
-        ],
         bootcamp: [
             { icon: Brain, text: "24/7 AI Bootcamp Mentor", included: true },
             { icon: Target, text: "Bootcamp Project Templates", included: true },
@@ -785,4 +725,5 @@ export default function StudentPaymentPage() {
         </div>
     )
 }
+
 
