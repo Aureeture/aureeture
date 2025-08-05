@@ -1,201 +1,217 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
-    Brain,
-    Target,
+    BrainCircuit,
+    Lightbulb,
+    Rocket,
     Users,
-    Award,
-    FileText,
     TrendingUp,
-    GraduationCap,
-    Clock,
+    Award,
+    ShieldCheck,
+    ArrowRight,
     Zap,
+    GraduationCap,
+    Star,
 } from "lucide-react"
 
-// The form data interface is now minimal as no user info is collected on this page.
-interface StudentPaymentFormData {
-    plan: "bootcamp"
-}
-
 export default function StudentPaymentPage() {
-    const [formData, setFormData] = useState<StudentPaymentFormData>({
-        plan: "bootcamp",
-    })
-
-    const [showSuccessModal, setShowSuccessModal] = useState(false)
     const [isProcessing, setIsProcessing] = useState(false)
 
-    // Simplified to only include the bootcamp plan
-    const studentPlans = {
-        bootcamp: {
-            price: 1699,
-            originalPrice: 2499, // Assuming an original price for context
-            period: "event",
-            savings: 800,
-            duration: "3-Day GenAI & Entrepreneurship Bootcamp",
-            badge: "Limited Seats",
-            color: "from-pink-500 to-purple-500",
-        },
+    const bootcampPlan = {
+        price: 1699,
+        originalPrice: 2999,
+        duration: "3-Day GenAI & Entrepreneurship Bootcamp",
+        badge: "Limited Seats",
     }
 
-    const planFeatures = {
-        bootcamp: [
-            { icon: Brain, text: "24/7 AI Bootcamp Mentor" },
-            { icon: Target, text: "Real-World Project Templates" },
-            { icon: Users, text: "Team Formation & Collaboration" },
-            { icon: Award, text: "Pitch Deck & Presentation Mastery" },
-            { icon: TrendingUp, text: "Live Code & Idea Reviews" },
-            { icon: FileText, text: "Connect with Industry Experts" },
-            { icon: Zap, text: "Winning Strategy Sessions" },
-            { icon: Clock, text: "Dedicated 48hr Support" },
-        ],
-    }
+    // The final amount is now simply the plan's price
+    const totalAmount = bootcampPlan.price
 
-    const currentPlan = studentPlans.bootcamp
-    const currentFeatures = planFeatures.bootcamp
-    
-    // Simplified price calculation
-    const subtotal = currentPlan.price
-    const tax = Math.round(subtotal * 0.18)
-    const total = subtotal + tax
-
-    const handlePayment = async () => {
+    const handleRegistrationRedirect = () => {
         setIsProcessing(true)
-        
-        try {
-            // The data sent to the backend is now minimal
-            const response = await fetch('/api/initiate-payment', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    plan: formData.plan,
-                    amount: total * 100, // Amount in paise
-                }),
-            });
-
-            const data = await response.json();
-            
-            if (data.success && data.paymentUrl) {
-                // Redirect to PhonePe payment page
-                window.location.href = data.paymentUrl;
-            } else {
-                console.error('Payment initiation failed:', data.message);
-                setIsProcessing(false);
-            }
-        } catch (error) {
-            console.error('Error initiating payment:', error);
-            setIsProcessing(false);
-        }
+        // Redirect to the external registration page
+        window.location.href = "https://konfhub.com/aureeture-ai-3-day-innovation-career-discovery-bootcamp"
     }
+    
+    const scrollToPricing = () => {
+        document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    const valueProps = [
+        {
+            icon: Lightbulb,
+            title: "AI-Powered Ideation",
+            desc: "Learn to leverage GenAI to discover and validate groundbreaking startup ideas.",
+        },
+        {
+            icon: Rocket,
+            title: "Build an MVP in Days",
+            desc: "Get hands-on experience turning your concept into a functional Minimum Viable Product.",
+        },
+        {
+            icon: Award,
+            title: "Master the Winning Pitch",
+            desc: "Craft and deliver a compelling pitch that captivates judges and investors.",
+        },
+    ]
+
+    const whoIsThisFor = [
+        {
+            icon: GraduationCap,
+            title: "The Aspiring Founder",
+            desc: "You have the ambition to start your own company and need the roadmap to get started.",
+        },
+        {
+            icon: Zap,
+            title: "The Curious Innovator",
+            desc: "You love building, creating, and want to explore how AI can bring your ideas to life.",
+        },
+        {
+            icon: Star,
+            title: "The Future Leader",
+            desc: "You're eager to gain leadership, product management, and real-world project experience.",
+        },
+    ]
 
     return (
-        <div className="bg-black text-white min-h-screen pt-16">
-            <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-4xl mx-auto">
-                    {/* Bootcamp Intro Section */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="mb-12"
-                    >
-                        <Card className="bg-black/30 backdrop-blur-sm border border-white/10">
-                            <CardContent className="p-8">
-                                <div className="text-center mb-8">
-                                    <div className="w-20 h-20 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
-                                        <Zap className="h-10 w-10 text-white" />
-                                    </div>
-                                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent mb-4">
-                                        🏆 Aureeture's Bootcamp Success Package
-                                    </h1>
-                                    <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                                        Everything you need to dominate your next hackathon or innovation challenge. Go from idea to a winning pitch with our GenAI-powered platform.
-                                    </p>
-                                </div>
+        <div className="bg-black text-white min-h-screen overflow-x-hidden">
+            {/* Background decorative gradients */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+                <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-sky-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            </div>
+            
+            <div className="relative z-10">
+                {/* Hero Section */}
+                <motion.section 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="text-center py-24 sm:py-32 px-4"
+                >
+                    <Badge variant="outline" className="border-purple-400/50 text-purple-300 bg-purple-900/20 text-sm px-4 py-1 mb-4">
+                        GenAI & Entrepreneurship Bootcamp
+                    </Badge>
+                    <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6">
+                        Go From <span className="bg-gradient-to-r from-purple-400 to-sky-400 bg-clip-text text-transparent">Idea to MVP</span> in 3 Days
+                    </h1>
+                    <p className="max-w-3xl mx-auto text-lg sm:text-xl text-gray-300 mb-10">
+                        Join India's most innovative student bootcamp. Stop just learning about AI—start building with it. Launch a real project, network with founders, and supercharge your career.
+                    </p>
+                    <Button onClick={scrollToPricing} size="lg" className="bg-white text-black font-bold hover:bg-gray-200 text-lg px-10 py-7 rounded-full">
+                        Enroll Now <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                </motion.section>
 
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                                    {planFeatures.bootcamp.slice(0, 4).map((feature, index) => (
-                                        <motion.div
-                                            key={index}
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ delay: index * 0.1 }}
-                                            className="p-4"
-                                        >
-                                            <feature.icon className="h-10 w-10 text-purple-400 mx-auto mb-3" />
-                                            <p className="text-gray-300 text-sm">{feature.text}</p>
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </motion.div>
-
-                    {/* Price Breakdown & CTA */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                    >
-                        <Card className="bg-gray-900/50 border-purple-500/20 max-w-2xl mx-auto">
-                            <CardContent className="p-8">
-                                <h3 className="text-2xl font-bold mb-6 text-white text-center">Order Summary</h3>
-
-                                <div className="mb-6 p-4 bg-purple-500/10 rounded-lg border border-purple-500/20">
-                                    <div className="flex items-center justify-between mb-2">
-                                        <span className="font-semibold text-white capitalize">Bootcamp Package</span>
-                                        <Badge className={`bg-gradient-to-r ${currentPlan.color} text-white`}>
-                                            {currentPlan.badge}
-                                        </Badge>
-                                    </div>
-                                    <p className="text-sm text-gray-400">{currentPlan.duration}</p>
-                                </div>
-
-                                <div className="space-y-4 mb-6">
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-gray-400">Bootcamp Price</span>
-                                        <div className="flex items-baseline space-x-2">
-                                            <span className="text-gray-500 line-through">₹{currentPlan.originalPrice}</span>
-                                            <span className="text-white font-medium">₹{currentPlan.price}</span>
+                {/* Value Proposition Section */}
+                <section className="py-16 sm:py-24 px-4 bg-white/5">
+                    <div className="max-w-7xl mx-auto">
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="text-center mb-16"
+                        >
+                            <h2 className="text-3xl sm:text-4xl font-bold mb-4">What You'll Build & Master</h2>
+                            <p className="max-w-2xl mx-auto text-gray-400">
+                                This isn't a lecture series. It's a hands-on sprint to build tangible skills and a portfolio piece.
+                            </p>
+                        </motion.div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {valueProps.map((item, i) => (
+                                <motion.div
+                                    key={item.title}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                                >
+                                    <Card className="bg-gray-900/50 border-purple-500/20 h-full text-center p-8 transition-all duration-300 hover:border-purple-500/60 hover:scale-105">
+                                        <div className="w-16 h-16 bg-gradient-to-br from-purple-500/20 to-sky-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                                            <item.icon className="h-8 w-8 text-sky-300" />
                                         </div>
-                                    </div>
+                                        <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                                        <p className="text-gray-400">{item.desc}</p>
+                                    </Card>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
 
-                                    <div className="pt-4 border-t border-gray-700">
-                                        <div className="flex justify-between items-center">
-                                            <span className="text-gray-400">Subtotal</span>
-                                            <span className="text-white font-medium">₹{subtotal.toLocaleString('en-IN')}</span>
-                                        </div>
-                                        <div className="flex justify-between items-center mt-2">
-                                            <span className="text-gray-400">GST (18%)</span>
-                                            <span className="text-white font-medium">₹{tax.toLocaleString('en-IN')}</span>
-                                        </div>
-                                    </div>
+                {/* Who is this for Section */}
+                 <section className="py-16 sm:py-24 px-4">
+                    <div className="max-w-7xl mx-auto">
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="text-center mb-16"
+                        >
+                            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Is This Bootcamp For You?</h2>
+                            <p className="max-w-2xl mx-auto text-gray-400">If you fit one of these profiles, you're in the right place.</p>
+                        </motion.div>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {whoIsThisFor.map((card, i) => (
+                                <motion.div
+                                    key={card.title}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                                    className="bg-gray-900/30 border border-white/10 rounded-2xl p-8 flex flex-col items-center text-center"
+                                >
+                                    <card.icon className="h-10 w-10 text-purple-400 mb-4" />
+                                    <h3 className="text-xl font-bold text-white mb-3">{card.title}</h3>
+                                    <p className="text-gray-400">{card.desc}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
 
-                                    <div className="border-t border-gray-700 pt-4">
-                                        <motion.div
-                                            key={total}
-                                            initial={{ scale: 1.05 }}
-                                            animate={{ scale: 1 }}
-                                            className="flex justify-between items-center text-xl font-bold"
-                                        >
-                                            <span className="text-white">Total Amount</span>
-                                            <span className="text-green-400">₹{total.toLocaleString('en-IN')}</span>
-                                        </motion.div>
-                                    </div>
-                                </div>
 
-                                <div className="space-y-4 mt-8">
+                {/* Pricing & CTA Section */}
+                <section id="pricing" className="py-16 sm:py-24 px-4">
+                    <div className="max-w-2xl mx-auto">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.5 }}
+                        >
+                            <Card className="bg-gradient-to-br from-gray-900 to-black border-purple-500/30">
+                                <CardContent className="p-8 sm:p-12 text-center">
+                                    <h2 className="text-3xl font-bold mb-4">Get Your All-Access Pass</h2>
+                                    <p className="text-gray-400 mb-8">One price, unlimited possibilities. Seats are filling up fast!</p>
+
+                                    <div className="my-8">
+                                        <span className="text-5xl font-bold text-white">₹{totalAmount.toLocaleString('en-IN')}</span>
+                                        <span className="text-xl text-gray-500 line-through ml-2">₹{bootcampPlan.originalPrice}</span>
+                                        <p className="text-purple-400 font-semibold mt-2">Special Student Offer</p>
+                                    </div>
+                                    
+                                    <ul className="space-y-3 text-left my-10 max-w-sm mx-auto">
+                                        {[
+                                            "3 Days of Live, Interactive Sessions",
+                                            "Full Access to GenAI Tools & Mentors",
+                                            "Team Formation & Networking Events",
+                                            "Certificate of Completion",
+                                            "Entry to the Aureeture Founders Club",
+                                        ].map(feature => (
+                                            <li key={feature} className="flex items-center">
+                                                <ShieldCheck className="h-5 w-5 text-green-400 mr-3 flex-shrink-0" />
+                                                <span className="text-gray-300">{feature}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+
                                     <Button
-                                        onClick={handlePayment}
+                                        onClick={handleRegistrationRedirect}
                                         disabled={isProcessing}
-                                        className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-6 text-lg"
+                                        className="w-full bg-gradient-to-r from-purple-600 to-sky-600 hover:from-purple-700 hover:to-sky-700 text-white font-bold py-7 text-xl rounded-lg"
                                     >
                                         {isProcessing ? (
                                             <div className="flex items-center justify-center">
@@ -203,76 +219,21 @@ export default function StudentPaymentPage() {
                                                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                                 </svg>
-                                                Processing...
+                                                Redirecting...
                                             </div>
                                         ) : (
-                                            `Pay Now - ₹${total.toLocaleString('en-IN')}`
+                                            `Pay & Register (₹${totalAmount.toLocaleString('en-IN')})`
                                         )}
                                     </Button>
-
-                                    <div className="flex items-center justify-center space-x-2 text-xs text-gray-400">
-                                        <svg className="h-4 w-4 text-green-500" fill="currentColor" viewBox="0 0 24 24"><path d="M17.498 14.382l-.002-.001a1 1 0 00-.579-.209h-.013c-.268 0-.529.102-.726.283l-2.088 1.85a10.3 10.3 0 01-4.406-4.407l1.85-2.087a.999.999 0 00.281-.727v-.014a1 1 0 00-.21-.578l-1.127-1.651a1 1 0 00-1.075-.388l-3.11.83a1 1 0 00-.693 1.21c.17.637.43 1.263.77 1.85 1.104 1.892 2.7 3.487 4.59 4.59.588.34 1.215.6 1.852.77a1 1 0 001.21-.694l.83-3.11z"></path><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16z"></path></svg>
-                                        <span>Secure payment powered by PhonePe</span>
-                                    </div>
-
-                                    <p className="text-xs text-gray-500 text-center pt-2 border-t border-gray-800 mt-4">
-                                        By proceeding, you agree to our Terms of Service and Privacy Policy.
+                                    <p className="text-xs text-gray-500 mt-4">
+                                        You will be redirected to our secure payment partner, KonfHub.
                                     </p>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Success Modal */}
-            <AnimatePresence>
-                {showSuccessModal && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-                    >
-                        <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
-                            className="bg-gray-900 border border-green-500/20 rounded-2xl p-8 max-w-md w-full text-center"
-                        >
-                            <motion.div
-                                initial={{ scale: 0 }}
-                                animate={{ scale: 1 }}
-                                transition={{ delay: 0.2, type: "spring", bounce: 0.5 }}
-                                className="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6"
-                            >
-                                <GraduationCap className="h-10 w-10 text-white" />
-                            </motion.div>
-
-                            <h3 className="text-2xl font-bold text-white mb-4">🎉 Welcome to the Bootcamp!</h3>
-                            <p className="text-gray-300 mb-8">
-                                Your payment was successful! You're all set for the bootcamp. Let's start building the future!
-                            </p>
-
-                            <div className="space-y-4">
-                                <Button className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600">
-                                    Go to Your Dashboard
-                                </Button>
-                                <Button
-                                    variant="outline"
-                                    onClick={() => setShowSuccessModal(false)}
-                                    className="w-full border-gray-600 text-gray-300 hover:bg-gray-800"
-                                >
-                                    Close
-                                </Button>
-                            </div>
-                            <p className="text-xs text-gray-500 mt-6">
-                                Check your email for confirmation and next steps.
-                            </p>
+                                </CardContent>
+                            </Card>
                         </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    </div>
+                </section>
+            </div>
         </div>
     )
 }
