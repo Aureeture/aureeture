@@ -6,11 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
-    BrainCircuit,
     Lightbulb,
     Rocket,
-    Users,
-    TrendingUp,
     Award,
     ShieldCheck,
     ArrowRight,
@@ -29,12 +26,10 @@ export default function StudentPaymentPage() {
         badge: "Limited Seats",
     }
 
-    // The final amount is now simply the plan's price
     const totalAmount = bootcampPlan.price
 
     const handleRegistrationRedirect = () => {
         setIsProcessing(true)
-        // Redirect to the external registration page
         window.location.href = "https://konfhub.com/aureeture-ai-3-day-innovation-career-discovery-bootcamp"
     }
     
@@ -46,35 +41,35 @@ export default function StudentPaymentPage() {
         {
             icon: Lightbulb,
             title: "AI-Powered Ideation",
-            desc: "Learn to leverage GenAI to discover and validate groundbreaking startup ideas.",
+            desc: "Tap into our GenAI-powered platform to discover and validate high-potential startup ideas, guided by an experiential curriculum.",
         },
         {
             icon: Rocket,
-            title: "Build an MVP in Days",
-            desc: "Get hands-on experience turning your concept into a functional Minimum Viable Product.",
+            title: "Build a Real-World MVP",
+            desc: "Move from concept to a functional Minimum Viable Product with hands-on guidance and our proprietary launchpad ecosystem.",
         },
         {
             icon: Award,
             title: "Master the Winning Pitch",
-            desc: "Craft and deliver a compelling pitch that captivates judges and investors.",
+            desc: "With access to industry mentorship, you'll learn to craft a compelling pitch that captivates judges and potential investors.",
         },
     ]
 
     const whoIsThisFor = [
         {
             icon: GraduationCap,
-            title: "The Aspiring Founder",
-            desc: "You have the ambition to start your own company and need the roadmap to get started.",
+            title: "The Aspiring Entrepreneur",
+            desc: "You're driven to launch your own venture and need structured, practical guidance to turn your vision into reality.",
         },
         {
             icon: Zap,
             title: "The Curious Innovator",
-            desc: "You love building, creating, and want to explore how AI can bring your ideas to life.",
+            desc: "You love to build and tinker, and you're ready to explore how cutting-edge GenAI can transform your creative ideas into real products.",
         },
         {
             icon: Star,
             title: "The Future Leader",
-            desc: "You're eager to gain leadership, product management, and real-world project experience.",
+            desc: "You want to go beyond academics to gain tangible experience in product management, teamwork, and startup culture.",
         },
     ]
 
@@ -95,16 +90,16 @@ export default function StudentPaymentPage() {
                     className="text-center py-24 sm:py-32 px-4"
                 >
                     <Badge variant="outline" className="border-purple-400/50 text-purple-300 bg-purple-900/20 text-sm px-4 py-1 mb-4">
-                        GenAI & Entrepreneurship Bootcamp
+                        India’s First GenAI-Powered Entrepreneurial Platform
                     </Badge>
                     <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6">
                         Go From <span className="bg-gradient-to-r from-purple-400 to-sky-400 bg-clip-text text-transparent">Idea to MVP</span> in 3 Days
                     </h1>
                     <p className="max-w-3xl mx-auto text-lg sm:text-xl text-gray-300 mb-10">
-                        Join India's most innovative student bootcamp. Stop just learning about AI—start building with it. Launch a real project, network with founders, and supercharge your career.
+                        This isn't another course—it's your launchpad. Stop learning theory and start building a real-world venture with Aureeture's guided, practical format.
                     </p>
                     <Button onClick={scrollToPricing} size="lg" className="bg-white text-black font-bold hover:bg-gray-200 text-lg px-10 py-7 rounded-full">
-                        Enroll Now <ArrowRight className="ml-2 h-5 w-5" />
+                        Reserve Your Spot <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                 </motion.section>
 
@@ -117,9 +112,9 @@ export default function StudentPaymentPage() {
                             transition={{ duration: 0.5 }}
                             className="text-center mb-16"
                         >
-                            <h2 className="text-3xl sm:text-4xl font-bold mb-4">What You'll Build & Master</h2>
+                            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Your Experiential Learning Journey</h2>
                             <p className="max-w-2xl mx-auto text-gray-400">
-                                This isn't a lecture series. It's a hands-on sprint to build tangible skills and a portfolio piece.
+                                This is a hands-on sprint where you'll gain practical skills and build a project for your portfolio.
                             </p>
                         </motion.div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -153,7 +148,7 @@ export default function StudentPaymentPage() {
                             className="text-center mb-16"
                         >
                             <h2 className="text-3xl sm:text-4xl font-bold mb-4">Is This Bootcamp For You?</h2>
-                            <p className="max-w-2xl mx-auto text-gray-400">If you fit one of these profiles, you're in the right place.</p>
+                            <p className="max-w-2xl mx-auto text-gray-400">If you identify with one of these profiles, you're in the right place.</p>
                         </motion.div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             {whoIsThisFor.map((card, i) => (
@@ -173,7 +168,6 @@ export default function StudentPaymentPage() {
                     </div>
                 </section>
 
-
                 {/* Pricing & CTA Section */}
                 <section id="pricing" className="py-16 sm:py-24 px-4">
                     <div className="max-w-2xl mx-auto">
@@ -184,7 +178,7 @@ export default function StudentPaymentPage() {
                         >
                             <Card className="bg-gradient-to-br from-gray-900 to-black border-purple-500/30">
                                 <CardContent className="p-8 sm:p-12 text-center">
-                                    <h2 className="text-3xl font-bold mb-4">Get Your All-Access Pass</h2>
+                                    <h2 className="text-3xl font-bold mb-4">Join the Next Generation of Innovators</h2>
                                     <p className="text-gray-400 mb-8">One price, unlimited possibilities. Seats are filling up fast!</p>
 
                                     <div className="my-8">
@@ -195,11 +189,12 @@ export default function StudentPaymentPage() {
                                     
                                     <ul className="space-y-3 text-left my-10 max-w-sm mx-auto">
                                         {[
-                                            "3 Days of Live, Interactive Sessions",
-                                            "Full Access to GenAI Tools & Mentors",
-                                            "Team Formation & Networking Events",
-                                            "Certificate of Completion",
-                                            "Entry to the Aureeture Founders Club",
+                                            "3 Days of Immersive, Live Sessions",
+                                            "Full Access to Aureeture's GenAI Platform",
+                                            "Guidance from Industry Mentors",
+                                            "Entry to the exclusive Aureeture Founder's Club",
+                                            "Fast-track to future hackathons & idea accelerators",
+                                            "Verified Certificate of Completion",
                                         ].map(feature => (
                                             <li key={feature} className="flex items-center">
                                                 <ShieldCheck className="h-5 w-5 text-green-400 mr-3 flex-shrink-0" />
@@ -226,7 +221,7 @@ export default function StudentPaymentPage() {
                                         )}
                                     </Button>
                                     <p className="text-xs text-gray-500 mt-4">
-                                        You will be redirected to our secure payment partner, KonfHub.
+                                        You will be redirected to our secure registration partner, KonfHub.
                                     </p>
                                 </CardContent>
                             </Card>
