@@ -6,20 +6,36 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion" // Assuming you have this from shadcn/ui
+import {
     Lightbulb,
     Rocket,
-    Award,
     ShieldCheck,
     ArrowRight,
     Zap,
-    GraduationCap,
     Star,
     CalendarDays,
     BotMessageSquare,
     ClipboardCheck,
     BarChart3,
-    Compass
+    Compass,
+    Quote,
+    Sparkles
 } from "lucide-react"
+
+// Component for Star Rating
+const StarRating = ({ rating = 5 }) => (
+    <div className="flex items-center">
+        {[...Array(rating)].map((_, i) => (
+            <Star key={i} className="h-5 w-5 text-amber-400 fill-amber-400" />
+        ))}
+    </div>
+);
+
 
 export default function StudentPaymentPage() {
     const [isProcessing, setIsProcessing] = useState(false)
@@ -78,37 +94,66 @@ export default function StudentPaymentPage() {
         }
     ]
 
-    const whoIsThisFor = [
+    const testimonials = [
         {
-            icon: Compass,
-            title: "The Career Explorer",
-            desc: "You're eager to explore different career paths and find the one that truly fits your passion and skills.",
+            name: "Priya Sharma",
+            college: "IIT Bombay",
+            quote: "The Aureeture bootcamp was a game-changer. I went from having a vague idea to a clear career path and a project I'm proud of. The AI mentors are incredibly helpful!",
         },
         {
-            icon: Lightbulb,
-            title: "The Curious Innovator",
-            desc: "You love to build and tinker, and you're ready to explore how cutting-edge GenAI can transform your creative ideas into real products.",
+            name: "Rohan Gupta",
+            college: "BITS Pilani",
+            quote: "I've been to many workshops, but none had this level of practical application. The focus on building a real roadmap and the post-bootcamp support is unmatched.",
+        },
+    ]
+
+    const faqs = [
+        {
+            question: "Is this bootcamp suitable for beginners?",
+            answer: "Absolutely! This bootcamp is designed for students at all levels. Whether you're just starting to explore career options or have some experience, our personalized approach ensures you get the maximum value."
         },
         {
-            icon: Star,
-            title: "The Future Leader",
-            desc: "You want to go beyond academics to gain tangible experience in product management, teamwork, and startup culture.",
+            question: "What happens after the 3-day bootcamp ends?",
+            answer: "The bootcamp is just your entry point into the Aureeture ecosystem. You'll retain access to key features like our AI chatbots, community platform, and your personalized career roadmap to ensure your growth continues."
+        },
+        {
+            question: "Will I receive a certificate?",
+            answer: "Yes, upon successful completion of the bootcamp and the associated project work, you will receive a verified certificate from Aureeture AI that you can share on your LinkedIn profile and resume."
+        },
+        {
+            question: "What if I can't attend one of the live sessions?",
+            answer: "We understand that schedules can be tight. All live sessions will be recorded and made available to registered participants, so you can catch up on anything you miss."
         },
     ]
 
     return (
         <div className="bg-black text-white min-h-screen overflow-x-hidden">
+            {/* Sticky Header */}
+            <header className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-lg border-b border-white/10">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex items-center justify-between h-20">
+                        <div className="flex items-center space-x-2">
+                            <Sparkles className="h-7 w-7 text-purple-400" />
+                            <span className="text-xl font-bold">Aureeture AI</span>
+                        </div>
+                        <Button onClick={scrollToPricing} className="bg-white text-black font-semibold hover:bg-gray-200 hidden sm:flex">
+                            Reserve Your Spot
+                        </Button>
+                    </div>
+                </div>
+            </header>
+
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
                 <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
                 <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-sky-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
             </div>
             
-            <div className="relative z-10">
+            <main className="relative z-10 pt-20"> {/* Add padding-top to avoid content being hidden by header */}
                 <motion.section 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="text-center py-24 sm:py-32 px-4"
+                    className="text-center pt-20 pb-24 sm:pt-24 sm:pb-32 px-4"
                 >
                     <Badge variant="outline" className="border-purple-400/50 text-purple-300 bg-purple-900/20 text-sm px-4 py-1 mb-4">
                         The Aureeture AI: FutureMinds Bootcamp Series
@@ -124,7 +169,7 @@ export default function StudentPaymentPage() {
                     </Button>
                 </motion.section>
 
-                <section className="py-16 sm:py-24 px-4 bg-white/5">
+                <section className="py-16 sm:py-24 px-4 bg-white/[.03]">
                     <div className="max-w-7xl mx-auto">
                         <motion.div 
                             initial={{ opacity: 0, y: 20 }}
@@ -132,7 +177,7 @@ export default function StudentPaymentPage() {
                             transition={{ duration: 0.5 }}
                             className="text-center mb-16"
                         >
-                            <h2 className="text-3xl sm:text-4xl font-bold mb-4">The 3-Day Bootcamp Experience</h2>
+                            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Your 3-Day Transformation</h2>
                             <p className="max-w-2xl mx-auto text-gray-400">
                                 A hands-on sprint where you'll gain practical skills and a clear plan for your future.
                             </p>
@@ -145,7 +190,7 @@ export default function StudentPaymentPage() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.5, delay: i * 0.1 }}
                                 >
-                                    <Card className="bg-gray-900/50 border-purple-500/20 h-full text-center p-8 transition-all duration-300 hover:border-purple-500/60 hover:scale-105">
+                                    <Card className="bg-gray-900/50 border-white/10 h-full text-center p-8 transition-all duration-300 hover:border-purple-500/60 hover:scale-105 hover:shadow-[0_0_25px_theme(colors.purple.500/0.3)]">
                                         <div className="w-16 h-16 bg-gradient-to-br from-purple-500/20 to-sky-500/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
                                             <item.icon className="h-8 w-8 text-sky-300" />
                                         </div>
@@ -166,7 +211,7 @@ export default function StudentPaymentPage() {
                             transition={{ duration: 0.5 }}
                             className="text-center mb-16"
                         >
-                            <h2 className="text-3xl sm:text-4xl font-bold mb-4">More Than a Bootcamp: Your Career Ecosystem</h2>
+                            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Your Lifelong Career Partner</h2>
                             <p className="max-w-2xl mx-auto text-gray-400">Your pass unlocks continuous growth on the Aureeture AI platform.</p>
                         </motion.div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -186,6 +231,67 @@ export default function StudentPaymentPage() {
                         </div>
                     </div>
                 </section>
+
+                <section className="py-16 sm:py-24 px-4 bg-white/[.03]">
+                    <div className="max-w-7xl mx-auto">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="text-center mb-16"
+                        >
+                            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Don't Just Take Our Word For It</h2>
+                             <p className="max-w-2xl mx-auto text-gray-400">See what students from top colleges are saying about Aureeture.</p>
+                        </motion.div>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            {testimonials.map((t, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: i * 0.2 }}
+                                >
+                                    <Card className="bg-gray-900/50 border-white/10 h-full p-8">
+                                        <div className="flex items-center mb-4">
+                                            <Quote className="h-8 w-8 text-purple-400/50 -ml-2" />
+                                        </div>
+                                        <p className="text-gray-300 mb-6 italic">"{t.quote}"</p>
+                                        <div className="flex justify-between items-center">
+                                            <div>
+                                                <p className="font-bold text-white">{t.name}</p>
+                                                <p className="text-sm text-gray-400">{t.college}</p>
+                                            </div>
+                                            <StarRating />
+                                        </div>
+                                    </Card>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <section className="py-16 sm:py-24 px-4">
+                    <div className="max-w-3xl mx-auto">
+                         <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5 }}
+                            className="text-center mb-12"
+                        >
+                            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+                        </motion.div>
+                        <Accordion type="single" collapsible className="w-full">
+                            {faqs.map((faq, i) => (
+                                <AccordionItem key={i} value={`item-${i}`} className="border-white/10">
+                                    <AccordionTrigger className="text-left text-lg hover:no-underline font-semibold">{faq.question}</AccordionTrigger>
+                                    <AccordionContent className="text-gray-400 text-base pt-2">
+                                        {faq.answer}
+                                    </AccordionContent>
+                                </AccordionItem>
+                            ))}
+                        </Accordion>
+                    </div>
+                </section>
                 
                 <section id="pricing" className="py-16 sm:py-24 px-4">
                     <div className="max-w-2xl mx-auto">
@@ -196,8 +302,8 @@ export default function StudentPaymentPage() {
                         >
                             <Card className="bg-gradient-to-br from-gray-900 to-black border-purple-500/30">
                                 <CardContent className="p-8 sm:p-12 text-center">
-                                    <h2 className="text-3xl font-bold mb-4">Get Your All-Access Pass</h2>
-                                    <p className="text-gray-400 mb-8">One price, unlimited possibilities. Seats are filling up fast!</p>
+                                    <h2 className="text-3xl font-bold mb-4">Ready to Build Your Future?</h2>
+                                    <p className="text-gray-400 mb-8">Seats are limited to ensure a high-quality, personalized experience. Reserve your spot now!</p>
 
                                     <div className="my-8">
                                         <span className="text-5xl font-bold text-white">₹{totalAmount.toLocaleString('en-IN')}</span>
@@ -212,7 +318,7 @@ export default function StudentPaymentPage() {
                                             "AI-Powered Mock Interview Sessions",
                                             "Your Personalized Career Roadmap",
                                             "Ongoing access to Domain-Specific AI Chatbots",
-                                            "Entry to the exclusive Aureeture Innovators Circle",
+                                            "Entry to the Aureeture Innovators Circle",
                                             "Verified Certificate of Completion"
                                         ].map(feature => (
                                             <li key={feature} className="flex items-center">
@@ -247,7 +353,7 @@ export default function StudentPaymentPage() {
                         </motion.div>
                     </div>
                 </section>
-            </div>
+            </main>
         </div>
     )
 }
