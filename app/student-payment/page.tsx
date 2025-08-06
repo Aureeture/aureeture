@@ -17,7 +17,8 @@ import {
     CalendarDays,
     BotMessageSquare,
     ClipboardCheck,
-    BarChart3
+    BarChart3,
+    Compass
 } from "lucide-react"
 
 export default function StudentPaymentPage() {
@@ -26,7 +27,7 @@ export default function StudentPaymentPage() {
     const bootcampPlan = {
         price: 1699,
         originalPrice: 2999,
-        duration: "3-Day GenAI & Entrepreneurship Bootcamp",
+        duration: "3-Day Innovation & Career Discovery Bootcamp",
         badge: "FutureMinds Series",
     }
 
@@ -41,7 +42,6 @@ export default function StudentPaymentPage() {
         document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Updated to reflect the Day 1-2-3 structure
     const bootcampJourney = [
         {
             icon: ClipboardCheck,
@@ -60,7 +60,6 @@ export default function StudentPaymentPage() {
         },
     ]
 
-    // New section content
     const ecosystemFeatures = [
         {
             icon: BarChart3,
@@ -81,9 +80,9 @@ export default function StudentPaymentPage() {
 
     const whoIsThisFor = [
         {
-            icon: GraduationCap,
-            title: "The Aspiring Entrepreneur",
-            desc: "You're driven to launch your own venture and need structured, practical guidance to turn your vision into reality.",
+            icon: Compass,
+            title: "The Career Explorer",
+            desc: "You're eager to explore different career paths and find the one that truly fits your passion and skills.",
         },
         {
             icon: Lightbulb,
@@ -213,7 +212,7 @@ export default function StudentPaymentPage() {
                                             "AI-Powered Mock Interview Sessions",
                                             "Your Personalized Career Roadmap",
                                             "Ongoing access to Domain-Specific AI Chatbots",
-                                            "Entry to the Aureeture Community & Founder's Club",
+                                            "Entry to the exclusive Aureeture Innovators Circle",
                                             "Verified Certificate of Completion"
                                         ].map(feature => (
                                             <li key={feature} className="flex items-center">
