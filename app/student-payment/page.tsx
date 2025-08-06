@@ -14,6 +14,10 @@ import {
     Zap,
     GraduationCap,
     Star,
+    CalendarDays,
+    BotMessageSquare,
+    ClipboardCheck,
+    BarChart3
 } from "lucide-react"
 
 export default function StudentPaymentPage() {
@@ -23,7 +27,7 @@ export default function StudentPaymentPage() {
         price: 1699,
         originalPrice: 2999,
         duration: "3-Day GenAI & Entrepreneurship Bootcamp",
-        badge: "Limited Seats",
+        badge: "FutureMinds Series",
     }
 
     const totalAmount = bootcampPlan.price
@@ -37,22 +41,42 @@ export default function StudentPaymentPage() {
         document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
     }
 
-    const valueProps = [
+    // Updated to reflect the Day 1-2-3 structure
+    const bootcampJourney = [
         {
-            icon: Lightbulb,
-            title: "AI-Powered Ideation",
-            desc: "Tap into our GenAI-powered platform to discover and validate high-potential startup ideas, guided by an experiential curriculum.",
+            icon: ClipboardCheck,
+            title: "Day 1: Career Clarity & Refinement",
+            desc: "Kickstart your journey with personalized career guidance. We'll help you refine your resume and optimize your LinkedIn profile to stand out.",
+        },
+        {
+            icon: Zap,
+            title: "Day 2: Live Domain Sessions & AI Mentorship",
+            desc: "Dive deep into your chosen domain with industry experts and get 24/7 support from our domain-specific AI chatbots for any questions.",
         },
         {
             icon: Rocket,
-            title: "Build a Real-World MVP",
-            desc: "Move from concept to a functional Minimum Viable Product with hands-on guidance and our proprietary launchpad ecosystem.",
+            title: "Day 3: Roadmap & Placement Strategy",
+            desc: "Build your personalized career roadmap and create a concrete strategy for landing top internships and placements with our expert guidance.",
+        },
+    ]
+
+    // New section content
+    const ecosystemFeatures = [
+        {
+            icon: BarChart3,
+            title: "AI-Powered Career Roadmaps",
+            desc: "Your journey continues with a tailored roadmap, with weekly checkpoints and growth tracking to keep you on target."
         },
         {
-            icon: Award,
-            title: "Master the Winning Pitch",
-            desc: "With access to industry mentorship, you'll learn to craft a compelling pitch that captivates judges and potential investors.",
+            icon: BotMessageSquare,
+            title: "24/7 Domain AI Chatbots",
+            desc: "Get instant help with interview prep, project suggestions, and complex concepts from our domain-specific AI mentors."
         },
+        {
+            icon: CalendarDays,
+            title: "Daily Streaks & Habit Builder",
+            desc: "Build consistency with daily learning tasks and quizzes designed to create long-term habits and keep you engaged."
+        }
     ]
 
     const whoIsThisFor = [
@@ -62,7 +86,7 @@ export default function StudentPaymentPage() {
             desc: "You're driven to launch your own venture and need structured, practical guidance to turn your vision into reality.",
         },
         {
-            icon: Zap,
+            icon: Lightbulb,
             title: "The Curious Innovator",
             desc: "You love to build and tinker, and you're ready to explore how cutting-edge GenAI can transform your creative ideas into real products.",
         },
@@ -75,14 +99,12 @@ export default function StudentPaymentPage() {
 
     return (
         <div className="bg-black text-white min-h-screen overflow-x-hidden">
-            {/* Background decorative gradients */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
                 <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
                 <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-sky-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
             </div>
             
             <div className="relative z-10">
-                {/* Hero Section */}
                 <motion.section 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -90,20 +112,19 @@ export default function StudentPaymentPage() {
                     className="text-center py-24 sm:py-32 px-4"
                 >
                     <Badge variant="outline" className="border-purple-400/50 text-purple-300 bg-purple-900/20 text-sm px-4 py-1 mb-4">
-                        India’s First GenAI-Powered Entrepreneurial Platform
+                        The Aureeture AI: FutureMinds Bootcamp Series
                     </Badge>
                     <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6">
-                        Go From <span className="bg-gradient-to-r from-purple-400 to-sky-400 bg-clip-text text-transparent">Idea to MVP</span> in 3 Days
+                        Unlock Your <span className="bg-gradient-to-r from-purple-400 to-sky-400 bg-clip-text text-transparent">Career Potential</span> in 3 Days
                     </h1>
                     <p className="max-w-3xl mx-auto text-lg sm:text-xl text-gray-300 mb-10">
-                        This isn't another course—it's your launchpad. Stop learning theory and start building a real-world venture with Aureeture's guided, practical format.
+                        This isn't just a bootcamp; it's your entry into Aureeture's 360° career ecosystem. Go from zero to a clear career strategy with personalized roadmaps, AI mentors, and a community of innovators.
                     </p>
                     <Button onClick={scrollToPricing} size="lg" className="bg-white text-black font-bold hover:bg-gray-200 text-lg px-10 py-7 rounded-full">
                         Reserve Your Spot <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                 </motion.section>
 
-                {/* Value Proposition Section */}
                 <section className="py-16 sm:py-24 px-4 bg-white/5">
                     <div className="max-w-7xl mx-auto">
                         <motion.div 
@@ -112,13 +133,13 @@ export default function StudentPaymentPage() {
                             transition={{ duration: 0.5 }}
                             className="text-center mb-16"
                         >
-                            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Your Experiential Learning Journey</h2>
+                            <h2 className="text-3xl sm:text-4xl font-bold mb-4">The 3-Day Bootcamp Experience</h2>
                             <p className="max-w-2xl mx-auto text-gray-400">
-                                This is a hands-on sprint where you'll gain practical skills and build a project for your portfolio.
+                                A hands-on sprint where you'll gain practical skills and a clear plan for your future.
                             </p>
                         </motion.div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {valueProps.map((item, i) => (
+                            {bootcampJourney.map((item, i) => (
                                 <motion.div
                                     key={item.title}
                                     initial={{ opacity: 0, y: 30 }}
@@ -138,25 +159,24 @@ export default function StudentPaymentPage() {
                     </div>
                 </section>
 
-                {/* Who is this for Section */}
-                 <section className="py-16 sm:py-24 px-4">
+                <section className="py-16 sm:py-24 px-4">
                     <div className="max-w-7xl mx-auto">
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5 }}
                             className="text-center mb-16"
                         >
-                            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Is This Bootcamp For You?</h2>
-                            <p className="max-w-2xl mx-auto text-gray-400">If you identify with one of these profiles, you're in the right place.</p>
+                            <h2 className="text-3xl sm:text-4xl font-bold mb-4">More Than a Bootcamp: Your Career Ecosystem</h2>
+                            <p className="max-w-2xl mx-auto text-gray-400">Your pass unlocks continuous growth on the Aureeture AI platform.</p>
                         </motion.div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {whoIsThisFor.map((card, i) => (
+                            {ecosystemFeatures.map((card, i) => (
                                 <motion.div
                                     key={card.title}
                                     initial={{ opacity: 0, y: 30 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                                    transition={{ duration: 0.5, delay: i * 0.2 }}
                                     className="bg-gray-900/30 border border-white/10 rounded-2xl p-8 flex flex-col items-center text-center"
                                 >
                                     <card.icon className="h-10 w-10 text-purple-400 mb-4" />
@@ -167,8 +187,7 @@ export default function StudentPaymentPage() {
                         </div>
                     </div>
                 </section>
-
-                {/* Pricing & CTA Section */}
+                
                 <section id="pricing" className="py-16 sm:py-24 px-4">
                     <div className="max-w-2xl mx-auto">
                         <motion.div
@@ -178,23 +197,24 @@ export default function StudentPaymentPage() {
                         >
                             <Card className="bg-gradient-to-br from-gray-900 to-black border-purple-500/30">
                                 <CardContent className="p-8 sm:p-12 text-center">
-                                    <h2 className="text-3xl font-bold mb-4">Join the Next Generation of Innovators</h2>
+                                    <h2 className="text-3xl font-bold mb-4">Get Your All-Access Pass</h2>
                                     <p className="text-gray-400 mb-8">One price, unlimited possibilities. Seats are filling up fast!</p>
 
                                     <div className="my-8">
                                         <span className="text-5xl font-bold text-white">₹{totalAmount.toLocaleString('en-IN')}</span>
                                         <span className="text-xl text-gray-500 line-through ml-2">₹{bootcampPlan.originalPrice}</span>
-                                        <p className="text-purple-400 font-semibold mt-2">Special Student Offer</p>
+                                        <p className="text-purple-400 font-semibold mt-2">{bootcampPlan.badge}</p>
                                     </div>
                                     
                                     <ul className="space-y-3 text-left my-10 max-w-sm mx-auto">
-                                        {[
-                                            "3 Days of Immersive, Live Sessions",
-                                            "Full Access to Aureeture's GenAI Platform",
-                                            "Guidance from Industry Mentors",
-                                            "Entry to the exclusive Aureeture Founder's Club",
-                                            "Fast-track to future hackathons & idea accelerators",
-                                            "Verified Certificate of Completion",
+                                       {[
+                                            "3 Days of Live, Interactive Bootcamp Sessions",
+                                            "Personalized Resume & LinkedIn Review",
+                                            "AI-Powered Mock Interview Sessions",
+                                            "Your Personalized Career Roadmap",
+                                            "Ongoing access to Domain-Specific AI Chatbots",
+                                            "Entry to the Aureeture Community & Founder's Club",
+                                            "Verified Certificate of Completion"
                                         ].map(feature => (
                                             <li key={feature} className="flex items-center">
                                                 <ShieldCheck className="h-5 w-5 text-green-400 mr-3 flex-shrink-0" />
